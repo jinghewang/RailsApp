@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :emps
   get 'home/index'
 
   get 'home/welcome'
