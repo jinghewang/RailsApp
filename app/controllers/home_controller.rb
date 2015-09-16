@@ -20,6 +20,40 @@ class HomeController < ApplicationController
 
   end
 
+  def create
+    @article = Article.new(params[:article])
+    respond_to do |format|
+      if @article.save
+        format.html {
+          redirect_to(@article, :notice => 'Article was successfully created.') }
+        format.xml {
+          render :xml => @article, :status => :created, :location => @article }
+      else
+        format.html {
+          render :action => "new" }
+        format.xml {
+          render :xml => @article.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    respond_to do |format|
+      if @article.update_attributes(params[:article])
+        format.html {
+          redirect_to(
+              @article, :notice => 'Article was successfully updated.') }
+        format.xml { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml {
+          render :xml =>
+                     @article.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   def welcome
     # User.update(1, name: "T-Shirt", price: 23)
   end
