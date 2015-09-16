@@ -1,0 +1,12 @@
+<h1>Home#index</h1>
+<% @articles.each do |article| %>
+    <tr>
+      <td><%= article.created_at %></td>
+      <td><%= article.created_at %></td>
+      <td><%= article.created_at %></td>
+      <td><%= link_to 'Show', article %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Issues", {:controller => "home", :action => "index"}, {:title => "Issues"} %></td>
+    </tr>
+<% end %>
